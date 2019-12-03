@@ -1,8 +1,6 @@
-import Value from "./Models/Value.js";
+import Pokemon from "./Models/Pokemon.js";
 
 let _state = {
-  activeValue: new Value({ title: "Value" }),
-  /** @type {Value[]} */
   pokemon: []
 };
 
@@ -10,8 +8,7 @@ let _state = {
  * @type {{[x:string]: function[]}}
  */
 let _listeners = {
-  activeValue: [],
-  values: []
+  pokemon: []
 };
 
 //NOTE You should not need to change the code from this point down
