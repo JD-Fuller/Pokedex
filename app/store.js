@@ -1,6 +1,8 @@
 import Pokemon from "./Models/Pokemon.js";
 
 let _state = {
+  //actual data, so it's a single instance of a pokemon
+  activePokemon: {},
   pokemon: []
 };
 
@@ -8,6 +10,8 @@ let _state = {
  * @type {{[x:string]: function[]}}
  */
 let _listeners = {
+  // Should be an array so there's multiple functions - ask about this one. 
+  activePokemon: [],
   pokemon: []
 };
 
