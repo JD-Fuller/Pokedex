@@ -6,20 +6,30 @@ import store from "../store.js";
 function _draw() {
   let pokemonTemplate = ''
   let pokemon = store.State.pokemon
-  debugger//put p.name in quotations because it's going to be read as a string, not a variable
-
+  //put p.name in quotations because it's going to be read as a string, not a variable
   pokemon.forEach(p => pokemonTemplate += `<li onclick="app.pokemonController.selectPokemonAsync('${p.name}')">${p.name}</li>`)
   console.log(pokemon);
 
   document.getElementById("search").innerHTML = pokemonTemplate
 }
 
+function _drawCaughtPokemon() {
+  let template = ''
+  let caughtPokemon = store.State.caughtPokemon;
+  debugger//put p.name in quotations because it's going to be read as a string, not a variable
+  caughtPokemon.forEach(cur => template += `<li onclick="app.pokemonController.deletePok('${cur.name}')">${cur.name}</li>`)
+
+  document.getElementById("caught-pokemon").innerHTML = template
+}
+
 //Public
 export default class PokeController {
-  constructor() {
-    _draw();d
+  constructor() {//first method that runs when controller gets instantiated
+    _draw();
     store.subscribe("pokemon", _draw);
     service.searchAsync();
+   store.subscribe("caughtPokemon", _drawCaughtPokemon);
+   //is caught pokemon a thing in my store?
 
   }
 
@@ -42,16 +52,14 @@ try {
 }
 
 }
-
-
-  // async searchAsync() {
-  //   event.preventDefault();
-  //   try {
-  //     await service.searchAsync();
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  //   console.log("Where did all the pokemon go?")
-  //   _draw();
-  // }
+  async searchAsync() {
+    event.preventDefault();
+    try {
+      await service.searchAsync();
+    } catch (e) {
+      console.log(e);
+    }
+    console.log("Where did all the pokemon go?")
+    _draw();
+  }
 }

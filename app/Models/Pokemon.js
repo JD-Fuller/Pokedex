@@ -19,7 +19,7 @@
         `;
 
 
-
+    
         return `
         add card with all of the references to the pokemon
         <div class="card" style="width: 20rem:">
